@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" placeholder="Enter the value" required id="value" size="50px">
+    <button type="submit" onclick="play()">queen</button>
+    <p id="values"></p>
+</body>
+<script>
+    var queen = {
+        position: {
+            x: 4,
+            y: 4
+        }
+    };
+
+    function move(num, dir) {
+        let temp;
+        switch (dir) {
+            case "E":
+                temp = queen.position.y + num;
+                if (temp < 8 && temp < 0) {
+                    console.log("outside boundary N");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.y = temp;
+                }
+                break;
+            case "S":
+                temp = queen.position.x + num;
+                if (temp < 8 && temp < 0) {
+                    console.log("outside boundary S");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.x = temp;
+                }
+                break;
+            case "W":
+                temp = queen.position.y - num;
+                if (temp < 8 && temp < 0) {
+                    console.log("outside boundary W");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.y = temp;
+                }
+                break;
+            case "N":
+                temp = queen.position.x - num;
+                if (temp < 8 && temp < 0) {
+                    console.log("outside boundary N");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.x = temp;
+                }
+                break;
+            default:
+                document.write("invalid input");
+                break;
+        }
+    }
+
+    function play() {
+        var a = document.getElementById("value").value;
+        var value = a.split(" ")
+        value.forEach(e => {
+            let num = Number(e.slice(e.length - 1));
+            let dir = e.slice(0, e.length - 1)
+            move(num, dir);
+
+        });
+        console.log("yours position ->  " + board[queen.position.x][queen.position.y]);
+        document.getElementById("values").innerHTML = "your position ->" + board[queen.position.x][queen.position.y];
+    }
+    var board = [
+        ["a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8"],
+        ["a7", "b7", "c7", "d7", "e7", "f7", "g7", "h7"],
+        ["a6", "b6", "c6", "d6", "e6", "f6", "g6", "h6"],
+        ["a5", "b5", "c5", "d5", "e5", "f5", "g5", "h5"],
+        ["a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4"],
+        ["a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3"],
+        ["a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"],
+        ["a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"]
+    ];
+</script>
+
+</html>
+<!-- now it is working right yes sir. Overall it is fine there is a problem in spelling ok sir
+done sir small doubt yhesow how to add northeast all those directions
+simple get the char as NE in switch then macke change in both x and y axix let check 
+did you get my point yes we have to change the values of x and y is it ?yes done
+
+start work on tat na d
+-->
