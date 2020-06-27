@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 </head>
 
 <body>
-    <input type="text" placeholder="Enter the value" required id="value" size="50px">
+    <input type="text" placeholder="Enter the value" required id="value" size="50px" />
     <button type="submit" onclick="play()">queen</button>
     <p id="values"></p>
 </body>
@@ -16,8 +16,8 @@
     var queen = {
         position: {
             x: 4,
-            y: 4
-        }
+            y: 4,
+        },
     };
 
     function move(num, dir) {
@@ -59,6 +59,57 @@
                     queen.position.x = temp;
                 }
                 break;
+
+            case "NE":
+
+                tempx = queen.position.x - num;
+                tempy = queen.position.y + num;
+
+                if ((tempx < 8 && tempx < 0) || (tempy < 8 && tempy < 0)) {
+
+                    console.log("outside boundary NE");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.x = tempx;
+                    queen.position.y = tempy;
+                }
+                break;
+            case "NW":
+                tempy = queen.position.y - num;
+                tempx = queen.position.x - num;
+
+                if ((tempy < 8 && tempy < 0) || (tempx < 8 && tempx < 0)) {
+                    console.log("outside boundary NW");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.y = tempy;
+                    queen.position.x = tempx;
+                }
+                break;
+            case "SE":
+                tempx = queen.position.x + num;
+                tempy = queen.position.y + num;
+
+                if ((tempx < 8 && tempx < 0) || (tempy < 8 && tempy < 0)) {
+                    console.log("outside boundary SE");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.x = tempx;
+                    queen.position.y = tempy;
+                }
+                break;
+            case "SW":
+                tempx = queen.position.x + num;
+                tempy = queen.position.y - num;
+
+                if ((tempx < 8 && temp < 0) || (tempy < 8 && tempy < 0)) {
+                    console.log("outside boundary SW");
+                    document.write("outside boundary");
+                } else {
+                    queen.position.x = tempx;
+                    queen.position.y = tempy;
+                }
+                break;
             default:
                 document.write("invalid input");
                 break;
@@ -67,15 +118,17 @@
 
     function play() {
         var a = document.getElementById("value").value;
-        var value = a.split(" ")
-        value.forEach(e => {
+        var value = a.split(" ");
+        value.forEach((e) => {
             let num = Number(e.slice(e.length - 1));
-            let dir = e.slice(0, e.length - 1)
+            let dir = e.slice(0, e.length - 1);
             move(num, dir);
-
         });
-        console.log("yours position ->  " + board[queen.position.x][queen.position.y]);
-        document.getElementById("values").innerHTML = "your position ->" + board[queen.position.x][queen.position.y];
+        console.log(
+            "yours position ->  " + board[queen.position.x][queen.position.y]
+        );
+        document.getElementById("values").innerHTML =
+            "your position ->" + board[queen.position.x][queen.position.y];
     }
     var board = [
         ["a8", "b8", "c8", "d8", "e8", "f8", "g8", "h8"],
@@ -85,15 +138,8 @@
         ["a4", "b4", "c4", "d4", "e4", "f4", "g4", "h4"],
         ["a3", "b3", "c3", "d3", "e3", "f3", "g3", "h3"],
         ["a2", "b2", "c2", "d2", "e2", "f2", "g2", "h2"],
-        ["a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"]
+        ["a1", "b1", "c1", "d1", "e1", "f1", "g1", "h1"],
     ];
 </script>
 
 </html>
-<!-- now it is working right yes sir. Overall it is fine there is a problem in spelling ok sir
-done sir small doubt yhesow how to add northeast all those directions
-simple get the char as NE in switch then macke change in both x and y axix let check 
-did you get my point yes we have to change the values of x and y is it ?yes done
-
-start work on tat na d
--->
